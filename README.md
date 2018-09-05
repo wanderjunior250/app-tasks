@@ -1,6 +1,6 @@
 # app-tasks
 
-> A Vue.js project
+> A Vue.js project de exemplo de codificação em Vue.js. Utilizado para trabalho de conclusão de curso na FATEC ZL.
 
 ## Build Setup
 

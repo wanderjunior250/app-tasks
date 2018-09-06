@@ -2,7 +2,7 @@
 <div class="row">
     <div class="columns">
       <div class="column">
-        <div class="field is-grouped"  v-for="(tarefa, index) in tarefas">
+        <div class="field is-grouped"  v-for="(tarefa, index) in tarefas" :key="tarefa">
           <p class="control">
             <a class="button is-rounded is-small check-button" @click="check(index)">
               <span class="icon is-small">

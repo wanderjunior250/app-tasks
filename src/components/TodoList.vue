@@ -1,17 +1,17 @@
 <template>
 <div class="row">
     <div class="columns">
-      <div class="column">
+      <div class="column" id="tasks">
         <div class="field is-grouped"  v-for="(tarefa, index) in tarefas" :key="tarefa">
           <p class="control">
-            <a class="button is-rounded is-small check-button" @click="check(index)">
+            <a class="button is-rounded is-small check-button" id="close-open" @click="check(index)">
               <span class="icon is-small">
               </span>
             </a>
           </p>
           <p class="control is-expanded" :class="{'checked': tarefa.checked}">{{tarefa.description}}</p>
           <p class="control">
-            <a class="button is-danger is-small" @click="remover(index)">
+            <a class="button is-danger is-small" id="remove" @click="remover(index)">
               <span class="icon is-small">
                 <i class="fa fa-trash"></i>
               </span>

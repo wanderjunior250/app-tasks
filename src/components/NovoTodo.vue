@@ -7,7 +7,7 @@
              <input class="input is-primary has-text-centered" type="text" placeholder="Nova tarefa..." v-model="tarefa">
           </p>
           <p class="control">
-            <a class="button is-success add-button"  @click="enviarTarefa">
+            <a class="button is-success add-button" id="add"  @click="enviarTarefa">
               <span class="icon is-small">
                 <i class="fa fa-plus"></i>
               </span>

@@ -1,3 +1,4 @@
+
 <template>
   <div class="card">
     <header class="card-header">
@@ -43,8 +44,8 @@ export default {
     }
   },
   methods: {
-    adicionarTarefa(tarefa,execucao) {
-      let nova_tarefa = {'description': tarefa, 'date': execucao, 'checked': false}
+    adicionarTarefa(tarefa) {
+      let nova_tarefa = {'description': tarefa, 'checked': false}
       this.tarefas.push(nova_tarefa)
     },
     checkTarefa(index) {

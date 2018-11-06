@@ -9,7 +9,7 @@
               </span>
             </a>
           </p>
-          <p class="control is-expanded" :class="{'checked': tarefa.checked}">{{tarefa.description}} - Iniciada em: {{tarefa.date}}</p>
+          <p class="control is-expanded" :class="{'checked': tarefa.checked}">{{tarefa.description}}</p>
           <p class="control">
             <a class="button is-danger is-small" id="remove" @click="remover(index)">
               <span class="icon is-small">

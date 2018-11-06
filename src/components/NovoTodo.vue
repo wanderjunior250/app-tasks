@@ -1,15 +1,13 @@
-<template> 
+<template>
   <div class="row">
     <div class="columns">
       <div class="column  is-half is-offset-one-quarter">
         <div class="field is-grouped">
           <p class="control is-expanded">
-             <input class="input is-primary has-text-centered" id="nomeTarefa" name="taskName" type="text" placeholder="Nova tarefa..." v-model="tarefa">
-             <input class="input is-primary has-text-centered" id="data" name="executionDate" type="date" v-model="execucao">
+             <input class="input is-primary has-text-centered" type="text" placeholder="Nova tarefa..." v-model="tarefa">
           </p>
-          
           <p class="control">
-            <a class="button is-success add-button" id="add" @click="enviarTarefa">
+            <a class="button is-success add-button" id="add"  @click="enviarTarefa">
               <span class="icon is-small">
                 <i class="fa fa-plus"></i>
               </span>
@@ -22,28 +20,22 @@
 </template>
 
 <script>
-
 export default {
   name: 'novo-todo',
   data () {
     return {
-      tarefa: '',
-      execucao: ''
+      tarefa: ''
     }
   },
   methods: {
     enviarTarefa() {
-      if (this.tarefa != '' && this.execucao != '') {
-        this.$emit('novaTarefa', this.tarefa,this.execucao)
+      if (this.tarefa != '') {
+        this.$emit('novaTarefa', this.tarefa)
       }
       this.tarefa = ''
-      this.execucao = ''
     }
-    
   }
-  
 }
-
 </script>
 
 <style scoped>

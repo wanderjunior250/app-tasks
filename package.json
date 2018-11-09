@@ -25,6 +25,7 @@
     "font-awesome": "^4.7.0",
     "vue": "^2.5.11",
     "vue-loader": "^13.0.5",
+    "vue-resource": "^1.5.1",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
@@ -42,9 +43,13 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
+    "supertest": "^3.3.0",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }

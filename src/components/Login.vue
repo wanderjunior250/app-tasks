@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import App from '../App.vue'
+import App from '../App.vue';
 import Vue from 'vue';
-const axios = require('axios');
+const api = require('../controller/apiController.js');
 
 export default {
   name: 'login',
@@ -36,20 +36,9 @@ export default {
       if (this.usuario != '') {
         this.$emit('novoUsuario', this.usuario)
       };
-      response = axios.get('/user')
-      .then(function(response){
-        return response;
-      });  
 
-      let i;
-      for (i = 0; i < response.data.length; i++) { 
-        if (this.usuario == response.data[i].ra) {
-          console.log("ACHEIIIII PORRAAAAAA");
-          this.usuario = response.data[i];
-        };
-      };
-      
-      console.log(this.usuario);
+      this.usuario = api.getUserByRA(this.usuario);
+
       new Vue({
         el: '#app',
         render: h => h(App)

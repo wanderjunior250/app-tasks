@@ -4,7 +4,7 @@
       <div class="column  is-half is-offset-one-quarter">
         <div class="field is-grouped">
           <p class="control is-expanded">
-             <input class="input is-primary has-text-centered" type="text" placeholder="Digite seu RA" v-model="usuario">
+             <input class="input is-primary has-text-centered" type="text" placeholder="Digite seu RA" v-model="usuarioLogado">
           </p>
           <p class="control">
             <a class="button is-success add-button" id="add"  @click="logar">
@@ -22,27 +22,54 @@
 <script>
 import App from '../App.vue';
 import Vue from 'vue';
-const api = require('../controller/apiController.js');
+const axios = require('axios');
 
 export default {
   name: 'login',
   data () {
     return {
-      usuario: ''
+      usuarios: [],
+      usuarioLogado: ''
     }
+  },
+  mounted () {
+    axios.get('/user').then(response => {
+      this.usuarios = response.data
+    })
   },
   methods: {
     logar() {
-      if (this.usuario != '') {
-        this.$emit('novoUsuario', this.usuario)
-      };
+      console.log(this.usuarios);
+      if (this.usuarioLogado != '') {
+        let i;
+        let x = false;
+        console.log(this.usuarios.length);
+        console.log(this.usuarios);
+        for (i = 0; i <= this.usuarios.length; i++) {
+            if (this.usuarios[i].ra == this.usuarioLogado) {
+              console.log(this.usuarios[i].ra);
+              this.usuarioLogado = {
+                ra: this.usuarios[i].ra,
+                _id: this.usuarios[i]._id,
+                tasks: this.usuarios.tasks
+                };
+              x = true;
+            };
 
-      this.usuario = api.getUserByRA(this.usuario);
-
-      new Vue({
-        el: '#app',
-        render: h => h(App)
-      });
+          console.log(x);
+          if (x == false) {
+            console.log("ENTREI NO POST");
+            axios.post('/user', {
+              ra: this.usuarioLogado,
+              tasks: []
+            });
+          }
+          new Vue({
+            el: '#app',
+            render: h => h(App)
+          });
+        };
+      }
     }
   }
 }

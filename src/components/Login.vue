@@ -39,37 +39,30 @@ export default {
   },
   methods: {
     logar() {
-      console.log(this.usuarios);
       if (this.usuarioLogado != '') {
         let i;
-        let x = false;
-        console.log(this.usuarios.length);
-        console.log(this.usuarios);
-        for (i = 0; i <= this.usuarios.length; i++) {
-            if (this.usuarios[i].ra == this.usuarioLogado) {
-              console.log(this.usuarios[i].ra);
-              this.usuarioLogado = {
-                ra: this.usuarios[i].ra,
-                _id: this.usuarios[i]._id,
-                tasks: this.usuarios.tasks
-                };
-              x = true;
-            };
+        var x = false;
+        for (i = 0; i < this.usuarios.length; i++) {
+          if (this.usuarios[i].ra == this.usuarioLogado) {
+            console.log(this.usuarios[i].ra);
+            this.usuarioLogado = this.usuarios[i].ra;
+            x = true;
+          };
+        };
 
-          console.log(x);
-          if (x == false) {
-            console.log("ENTREI NO POST");
-            axios.post('/user', {
-              ra: this.usuarioLogado,
-              tasks: []
-            });
-          }
-          new Vue({
-            el: '#app',
-            render: h => h(App)
+        if (x == false) {
+          console.log("ENTREI NO POST");
+          axios.post('/user', {
+            ra: this.usuarioLogado,
+            tasks: []
           });
         };
-      }
+      };
+      
+      new Vue({
+        el: '#app',
+        render: h => h(App)
+      });
     }
   }
 }

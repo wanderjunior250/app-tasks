@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      usuarios: []
+      usuario: ''
     }
   },
   computed: {

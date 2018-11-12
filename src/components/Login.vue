@@ -4,7 +4,7 @@
       <div class="column  is-half is-offset-one-quarter">
         <div class="field is-grouped">
           <p class="control is-expanded">
-             <input class="input is-primary has-text-centered" type="text" placeholder="Digite seu RA" v-model="usuarioLogado">
+             <input class="input is-primary has-text-centered" type="text" placeholder="Digite seu RA" v-model="ra">
           </p>
           <p class="control">
             <a class="button is-success add-button" id="add"  @click="logar">
@@ -21,7 +21,6 @@
 
 <script>
 import App from '../App.vue';
-import Vue from 'vue';
 const axios = require('axios');
 
 export default {
@@ -29,23 +28,26 @@ export default {
   data () {
     return {
       usuarios: [],
-      usuarioLogado: ''
+      ra: '',
+      id: '',
+      tarefas: []
     }
   },
-  mounted () {
+  created () {
     axios.get('/user').then(response => {
       this.usuarios = response.data
     })
   },
   methods: {
     logar() {
-      if (this.usuarioLogado != '') {
+      var x = false;
+      if (this.ra != '') {
         let i;
-        var x = false;
         for (i = 0; i < this.usuarios.length; i++) {
-          if (this.usuarios[i].ra == this.usuarioLogado) {
-            console.log(this.usuarios[i].ra);
-            this.usuarioLogado = this.usuarios[i].ra;
+          if (this.usuarios[i].ra == this.ra) {
+            this.ra = this.usuarios[i].ra;
+            this.id = this.usuarios[i]._id;
+            this.tarefas = this.usuarios[i].tasks;
             x = true;
           };
         };
@@ -53,16 +55,19 @@ export default {
         if (x == false) {
           console.log("ENTREI NO POST");
           axios.post('/user', {
-            ra: this.usuarioLogado,
+            ra: this.ra,
             tasks: []
+          }).then(function (response) {
+            if (response.status == 200) {
+              this.id = response.data._id;
+            }
           });
         };
       };
+
+      localStorage.setItem('loggedUser', this.id);
       
-      new Vue({
-        el: '#app',
-        render: h => h(App)
-      });
+      this.$router.replace('/tarefas');
     }
   }
 }

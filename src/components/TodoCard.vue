@@ -23,19 +23,31 @@
 <script>
 import NovoTodo from './NovoTodo'
 import TodoList from './TodoList'
+import Login from './Login'
+const axios = require('axios');
 
 export default {
   name: 'todo-card',
   components: {
     NovoTodo,
-    TodoList
+    TodoList,
+    Login
   },
   data () {
     return {
       dias: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
       meses: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      tarefas: []
+      tarefas: [],
+      ra: '',
+      id: ''
     }
+  },
+  created () {
+    this.id = localStorage.getItem('loggedUser');
+    axios.get('/user/' + this.id).then(response => {
+      this.ra = response.data.ra;
+      this.tarefas = response.data.tasks;
+    });
   },
   computed: {
     hoje: function() {

@@ -8,7 +8,7 @@
     </header>
     <div class="card-content">
       <div class="content">
-        <login @usuario="login"></login>
+        <login @ra="login"></login>
       </div>
     </div>
   </div>
@@ -24,16 +24,15 @@ export default {
   },
   data () {
     return {
-      usuario: ''
+      ra: ''
     }
   },
   computed: {
   
   },
   methods: {
-    login(usuario) {
-      let usuario_logado = {'ra': usuario, 'tarefas': []}
-      this.tarefas.push(usuario_logado)
+    login(ra) {
+      let ra_logado = {'ra': ra, 'tarefas': []}
     }
   }
 }

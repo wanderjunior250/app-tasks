@@ -56,8 +56,8 @@ export default {
     }
   },
   methods: {
-    adicionarTarefa(tarefa) {
-      let nova_tarefa = {'description': tarefa, 'checked': false};
+    adicionarTarefa(tarefa, execucao) {
+      let nova_tarefa = {'description': tarefa, 'date': execucao, 'checked': false};
       this.tarefas.push(nova_tarefa);
       axios.put('/user/' + this.id, {
         ra: this.ra,

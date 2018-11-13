@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     logar() {
+      localStorage.setItem('loggedUser', '');
       var x = false;
       if (this.ra != '') {
         let i;
@@ -48,6 +49,7 @@ export default {
             this.ra = this.usuarios[i].ra;
             this.id = this.usuarios[i]._id;
             this.tarefas = this.usuarios[i].tasks;
+            localStorage.setItem('loggedUser', this.id);
             x = true;
             i = this.usuarios.length;
           };
@@ -60,14 +62,13 @@ export default {
             tasks: []
           }).then(function (response) {
             if (response.status == 200) {
-              this.id = response.data._id;
-            }
+              localStorage.setItem('loggedUser', response.data._id);
+            };
           });
         };
       };
 
-      localStorage.setItem('loggedUser', this.id);
-      this.$router.replace('/tarefas');
+      if (x) {this.$router.replace('/tarefas')} else {this.$router.replace('/registrado')};
     }
   }
 }

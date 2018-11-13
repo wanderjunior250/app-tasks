@@ -2,7 +2,7 @@
 <template>
 <div class="card">
     <header class="card-header">
-      <p class="card-header-title has-text-left">
+      <p class="card-header-title has-text-center">
         LOGIN - APP-TASKS
       </p>
     </header>

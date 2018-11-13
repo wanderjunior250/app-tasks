@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import App from './App.vue';
 import Login from './components/AppLogin.vue';
 import Tarefas from './components/AppTodo.vue';
+import Registrado from './components/Registrado.vue';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,10 @@ const router = new VueRouter({
     {
       path: '/tarefas', 
       component: Tarefas
+    },
+    {
+      path: '/registrado', 
+      component: Registrado
     }
   ]
 });

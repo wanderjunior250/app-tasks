@@ -36,7 +36,7 @@ export default {
   created () {
     axios.get('/user').then(response => {
       this.usuarios = response.data
-    })
+    });
   },
   methods: {
     logar() {
@@ -49,6 +49,7 @@ export default {
             this.id = this.usuarios[i]._id;
             this.tarefas = this.usuarios[i].tasks;
             x = true;
+            i = this.usuarios.length;
           };
         };
 
@@ -66,7 +67,6 @@ export default {
       };
 
       localStorage.setItem('loggedUser', this.id);
-      
       this.$router.replace('/tarefas');
     }
   }

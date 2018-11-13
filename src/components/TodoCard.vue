@@ -57,14 +57,38 @@ export default {
   },
   methods: {
     adicionarTarefa(tarefa) {
-      let nova_tarefa = {'description': tarefa, 'checked': false}
-      this.tarefas.push(nova_tarefa)
+      let nova_tarefa = {'description': tarefa, 'checked': false};
+      this.tarefas.push(nova_tarefa);
+      axios.put('/user/' + this.id, {
+        ra: this.ra,
+        tasks: this.tarefas
+      }).then(function (response) {
+        if (response.status == 200) {
+          console.log('update com sucesso!')
+        }
+      });
     },
     checkTarefa(index) {
-      this.tarefas[index]['checked'] = !this.tarefas[index]['checked']
+      this.tarefas[index]['checked'] = !this.tarefas[index]['checked'];
+      axios.put('/user/' + this.id, {
+        ra: this.ra,
+        tasks: this.tarefas
+      }).then(function (response) {
+        if (response.status == 200) {
+          console.log('update com sucesso!')
+        }
+      });
     },
     removerTarefa(index){
-      this.tarefas.splice(index,1)
+      this.tarefas.splice(index,1);
+      axios.put('/user/' + this.id, {
+        ra: this.ra,
+        tasks: this.tarefas
+      }).then(function (response) {
+        if (response.status == 200) {
+          console.log('update com sucesso!')
+        }
+      });
     }
   }
 }
